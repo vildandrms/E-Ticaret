@@ -1,0 +1,680 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Anasayfa.master.cs" Inherits="E_Shop.Anasayfa" %>
+
+<%-- <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>--%>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+
+    <title>Vildanın Sitesi
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+    <!-- theme stylesheet -->
+    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <script src="js/respond.min.js"></script>
+
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+
+<body>
+    <form runat="server">
+        <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+        <div id="top">
+            <div class="container">
+                <div class="col-md-6 offer" data-animate="fadeInDown">
+                    <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake"></a><a href="#"></a>
+                </div>
+                <div class="col-md-6" data-animate="fadeInDown">
+                    <ul class="menu">
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">
+                            <asp:Label ID="lblGiris" runat="server" Text="Giriş"></asp:Label></a>
+                        </li>
+                        <li><a href="register.aspx">Register</a>
+                        </li>
+                        <li><a href="contact.aspx">İletişim</a>
+                        </li>
+                        <li>
+                            <asp:LinkButton ID="lblCikis" runat="server" Visible="False" OnClick="lblCikis_Click">Çıkış</asp:LinkButton>
+                        </li>
+                        <li><a href="#">
+                            <asp:Label ID="lblKullanici" runat="server" Text=""></asp:Label></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <asp:Panel ID="Panel1" runat="server">
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="Login">Giriş</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="email" runat="server" TextMode="Email"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email Giriniz" ValidationGroup="3" ControlToValidate="txtEmail">*</asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group">
+                                    <asp:TextBox ID="txtSifre" CssClass="form-control" placeholder="sifre" runat="server" TextMode="Password"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Şifre Giriniz" ValidationGroup="3" ControlToValidate="txtSifre">*</asp:RequiredFieldValidator>
+                                </div>
+
+                                <p class="text-center">
+                                    <asp:LinkButton ID="btnGiris" class="btn btn-primary" runat="server" CssClass="fa fa-sign-in" OnClick="btnGiris_Click" ValidationGroup="3">Giriş</asp:LinkButton>
+                                    <br />
+                                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="3" />
+</p>
+
+                                        <%--  <p class="text-center text-muted">Not registered yet?</p>--%>
+                                        <p class="text-center text-muted"><a href="register.aspx"><strong>Üye ol</strong></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+
+        </div>
+
+        <!-- *** TOP BAR END *** -->
+
+        <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+
+        <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand home" href="index.aspx" data-animate-hover="bounce">
+                        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs"/>
+                        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"/><span class="sr-only">Obaju -AnaSayfa</span>
+                    </a>
+                    <div class="navbar-buttons">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                            <span class="sr-only">Arama Yap</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <a class="btn btn-default navbar-toggle" href="basket.aspx">
+                            <i class="fa fa-shopping-cart"></i><span class="hidden-xs"></span>
+                        </a>
+                    </div>
+                </div>
+                <!--/.navbar-header -->
+
+                <div class="navbar-collapse collapse" id="navigation">
+
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="active"><a href="default.aspx">Anasayfa</a>
+                        </li>
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Bayan <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+
+                                                <asp:Repeater ID="rptKadınGiyim" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Giyim</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptKadınAyakkabı" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Ayakkabı</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptKadınAksesuar" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Aksesuar</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptKadınMarkalar" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Markalar</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UMarId={0}",Eval("id")) %>'><%# Eval("MarkaAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.yamm-content -->
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Erkek <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+
+                                                <asp:Repeater ID="rptErkekGiyim" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Giyim</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UEKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptErkekAyakkabı" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Ayakkabı</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UEKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptErkekAksesuar" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Aksesuar</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UEKatId={0}",Eval("id")) %>'><%# Eval("GiyimAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <asp:Repeater ID="rptErkekMarkalar" runat="server">
+                                                    <HeaderTemplate>
+                                                        <h5>Markalar</h5>
+                                                        <ul>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+
+                                                        <li><a href='<%# string.Format("../category.aspx?UEMarId={0}",Eval("id")) %>'><%# Eval("MarkaAd") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate></ul></FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.yamm-content -->
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown yamm-fw">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
+                                <asp:Label ID="lblAdmingizle" runat="server" Text="Admin Sayfası" Visible="False"></asp:Label></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h5>Satıs Raporları</h5>
+                                                <ul>
+                                                    <li><a href="GunlukRaporlar.aspx">Günlük Raporlar</a>
+                                                    </li>
+                                                    <li><a href="GunlukRaporlar.aspx">En Çok Satanlar</a>
+                                                    </li>
+                                                    <li><a href="GunlukRaporlar.aspx">Satış Düzelleme</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Kullanıcı İşlemleri</h5>
+                                                <ul>
+                                                    <li><a href="kullanıcıIslemlerı.aspx">Üye Kayıt</a>
+                                                    </li>
+                                                    <li><a href="kullanıcıIslemlerı.aspx">Kullanici İşlemleri</a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Urun İşlemleri</h5>
+                                                <ul>
+                                                    <li><a href="UrunIslemleri.aspx">Markalar</a>
+                                                    </li>
+                                                    <li><a href="UrunIslemleri.aspx">Kategoriler</a>
+                                                    </li>
+                                                    <li><a href="UrunIslemleri.aspx">Renkler</a>
+                                                    </li>
+                                                    <li><a href="UrunIslemleri.aspx">Bedenler</a>
+                                                    </li>
+                                                    <li><a href="UrunIslemleri.aspx">Urun Kategorileri</a>
+                                                    </li>
+                                                    <li><a href="UrunIslemleri.aspx">Urunler</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.yamm-content -->
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!--/.nav-collapse -->
+
+                <div class="navbar-buttons">
+
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="basket.aspx" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">
+                            <asp:Label ID="lblurunAdet" runat="server" Text="Boş"></asp:Label></span></a>
+                    </div>
+                    <!--/.nav-collapse -->
+
+                    <div class="navbar-collapse collapse right" id="search-not-mobile">
+                        <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                            <span class="sr-only">Arama</span>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="collapse clearfix" id="search">
+
+                    <div class="navbar-form" role="search">
+                                            <div class="input-group">
+                       
+                                                <asp:TextBox ID="txtArama" CssClass="form-control" placeholder="Ara" runat="server"></asp:TextBox> 
+                        <span class="input-group-btn">
+                            <asp:LinkButton ID="btnAramaYap" CssClass="btn btn-primary" OnClick="btnAramaYap_Click" runat="server"><i class="fa fa-search"></i></asp:LinkButton>
+                           <%-- <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>--%>
+
+                        </span>
+                    </div>
+
+</div>
+
+                </div>
+                <!--/.nav-collapse -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#navbar -->
+
+        <!-- *** NAVBAR END *** -->
+
+        <div id="all">
+
+            <div id="content">
+                <div class="container">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li>Obaju</li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- *** MENUS AND FILTERS ***
+ _________________________________________________________ -->
+                        <asp:Panel ID="PnlGizle" runat="server">
+                            <div class="panel panel-default sidebar-menu">
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Kategoriler</h3>
+                                </div>
+
+                                <div class="panel-body">
+                                    <ul class="nav nav-pills nav-stacked category-menu">
+
+
+                                        <asp:Repeater ID="rptErkekKategorileri" runat="server">
+                                            <HeaderTemplate>
+                                                <li><a href="category.aspx">ERKEK <span class="badge pull-right"></span></a>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <ul>
+                                                    <li><a href='<%# string.Format("../category.aspx?EkatId={0}",Eval("id")) %>'><%# Eval("KategoriAd") %></a>
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                            <FooterTemplate></li></FooterTemplate>
+                                        </asp:Repeater>
+
+
+
+                                        <li class="active">
+
+                                            <asp:Repeater ID="rptKadınKategorileri" runat="server">
+                                                <HeaderTemplate>
+                                                    <li><a href="category.aspx">KADIN <span class="badge pull-right"></span></a></li>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <ul>
+                                                        <li><a href='<%# string.Format("../category.aspx?KkatId={0}",Eval("id")) %>'><%# Eval("KategoriAd") %></a>
+                                                        </li>
+                                                    </ul>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    </li>
+                                            
+                                                </FooterTemplate>
+                                                
+                                            </asp:Repeater>
+                                            <li></li>
+                                            </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default sidebar-menu">
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Markalar </h3>
+                                </div>
+
+                                <div class="panel-body">
+
+
+                                    <div class="form-group">
+                                        <asp:Repeater ID="rptMarkalar" runat="server">
+                                            <ItemTemplate>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <asp:CheckBox ID="cbMarkalar" Text='<%# Eval("MarkaAd") %>' runat="server" />
+                                                        <asp:Label ID="lblMSayisi" runat="server" Text="" />
+                                                        <asp:Label ID="hfMarkaId" Text='<%# Eval("id") %>' runat="server" Visible="False" />
+                                                    </label>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+
+
+                                    <asp:LinkButton ID="btnMarkaArayap" CssClass="btn btn-default btn-sm btn-primary" runat="server" OnClick="btnMarkaArayap_Click">Arama yap</asp:LinkButton>
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default sidebar-menu">
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Renkler</h3>
+                                </div>
+
+                                <div class="panel-body">
+
+
+                                    <div class="form-group">
+                                        <asp:Repeater ID="rptRenkler" runat="server">
+                                            <ItemTemplate>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <asp:CheckBox ID="cbRenkler" Text='<%# Eval("RenkAd") %>' runat="server" />(<asp:Label ID="lblSayisi" runat="server" Text="0"></asp:Label>)<asp:Label ID="hfRenkId" Text='<%# Eval("id") %>' runat="server" />
+                                                    </label>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+
+                                    <asp:LinkButton ID="btnRenkAra" CssClass="btn btn-default btn-sm btn-primary  " runat="server" Text="Arama Yap" OnClick="btnRenkAra_Click" >Arama Yap</asp:LinkButton>
+                                    <%-- <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i>Ara Yap</button>--%>
+                                </div>
+                            </div>
+
+
+                            <!-- *** MENUS AND FILTERS END *** -->
+
+                            <div class="banner">
+                                <a href="#">
+                                    <img src="img/banner.jpg" alt="sales 2014" class="img-responsive"/>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </asp:Panel>
+                    </div>
+                    <div class="col-md-9">
+                        
+                        <div class="content">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+
+                        <div class="row products">
+
+                            
+                            <%--<div class="pages">
+
+                        <p class="loadMore">
+                            <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i>Load more</a>
+                        </p>
+
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a>
+                            </li>
+                            <li class="active"><a href="#">1</a>
+                            </li>
+                            <li><a href="#">2</a>
+                            </li>
+                            <li><a href="#">3</a>
+                            </li>
+                            <li><a href="#">4</a>
+                            </li>
+                            <li><a href="#">5</a>
+                            </li>
+                            <li><a href="#">&raquo;</a>
+                            </li>
+                        </ul>
+                    </div>--%>
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                </div>
+                <!-- /#content -->
+            </div>
+
+            <!-- *** FOOTER ***
+ _________________________________________________________ -->
+            <div id="footer" data-animate="fadeInUp">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Kullanıcı işlemleri</h4>
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Giriş</a>
+                                </li>
+                                <li><a href="register.aspx">Ayarlar</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg hidden-sm"/>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+
+                            <hr class="hidden-md hidden-lg"/>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Adres</h4>
+
+                            <p>
+                                <strong>Obaju Ltd.</strong>
+                                <br/>
+                                Maden Mahallesi
+                            <br/>
+                                Selvi Sokak
+                            <br/>
+                                No:1 /D:4
+                            <br/>
+                                Sarıyer/İstanbul
+                            <br/>
+                                <br/>
+                                Türkiye
+                            <br/>
+                                <strong>Türkiye</strong>
+                            </p>
+
+                            <a href="contact.aspx">İletişim</a>
+
+                            <hr class="hidden-md hidden-lg"/>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+
+
+                        <div class="col-md-3 col-sm-6">
+                        </div>
+                        <!-- /input-group -->
+
+                        <hr/>
+
+                        <h4>Stay in touch</h4>
+
+                        <p class="social">
+                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                        </p>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+
+
+
+
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© 2015 Your name goes here.</p>
+
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">
+                        Template by <a href="http://bootstrapious.com/e-commerce-templates">Bootstrapious</a> with support from <a href="https://kakusei.cz">Kakusei</a>
+                        <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+       
+   
+        <!-- /#all -->
+
+
+
+
+        <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/bootstrap-hover-dropdown.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/front.js"></script>
+    </form>
+</body>
+
+</html>

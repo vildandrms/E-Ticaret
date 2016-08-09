@@ -1,0 +1,6 @@
+﻿Generated model file: EShopModel.edmx.
+Loading metadata from the database took 00:00:02.9986722.
+Generating the model took 00:00:02.9549950.
+Generated model file: EShopModel.edmx.
+Loading metadata from the database took 00:00:02.2072272.
+Generating the model took 00:00:01.9079475.
